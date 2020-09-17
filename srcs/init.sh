@@ -2,6 +2,9 @@
 mkdir /var/www/mywebsite && touch /var/www/mywebsite/index.php ;
 echo "<?php phpinfo(); ?>" >> /var/www/mywebsite/index.php ;
 
+# Generate self-signed certificate and key
+openssl req -newkey rsa:4096 -x509 -sha256 -days 365 -nodes -out /etc/ssl/certs/mywebsite.pem -keyout /etc/ssl/private/mywebsite.key -subj "/C=FR/ST=Paris/L=Paris/O=42 School/OU=vlageard/CN=mywebsite" ;
+
 # Config and start NGINX
 mv ./tmp/nginx-conf /etc/nginx/sites-available/mywebsite ;
 ln -s /etc/nginx/sites-available/mywebsite /etc/nginx/sites-enabled/mywebsite ;
