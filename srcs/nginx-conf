@@ -1,8 +1,8 @@
 server {
 	listen 80;
-	
+
 	server_name mywebsite;
-	
+
 	return 301 https://$host$request_uri;
 }
 
@@ -10,11 +10,12 @@ server {
 	listen 443 ssl;
 
 	server_name mywebsite;
-	
+
 	ssl_certificate /etc/ssl/certs/mywebsite.pem;
 	ssl_certificate_key /etc/ssl/private/mywebsite.key;
-	
+
 	root /var/www/mywebsite;
+	autoindex on;
 	index index.php index.html index.htm index.nginx-debian.html;
 
 	location ~ \.php$ {
